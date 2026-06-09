@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Diana 💜</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f3ff 0%, #fdf2f8 50%, #fae8ff 100%);
+            overflow-x: hidden;
+        }
+        .font-poetic { font-family: 'Playfair Display', serif; }
+        .heart-particle {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp 6s linear infinite;
+            opacity: 0;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        .letter-transition { transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-violet-50">
+
+    <div id="particles-container" class="absolute inset-0 pointer-events-none z-0"></div>
+
+    <main id="letter-card" class="letter-transition w-full max-w-md bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/50 z-10 text-center relative flex flex-col items-center justify-center min-h-[300px]">
+        
+        <div id="envelope-state" style="display: block;" class="space-y-6 py-6 transition-all duration-500 opacity-100">
+            <h2 class="font-poetic italic text-3xl text-violet-950 tracking-wide">Tienes una carta...</h2>
+            <p class="text-xs text-stone-500 tracking-widest uppercase">Toca el sello para abrirla</p>
+            
+            <button onclick="abrirCarta()" class="relative group focus:outline-none cursor-pointer mt-4 inline-block">
+                <span class="absolute inset-0 rounded-full bg-violet-400/30 blur-xl scale-110"></span>
+                <div class="relative w-20 h-20 bg-gradient-to-br from-violet-700 to-fuchsia-900 rounded-full flex items-center justify-center shadow-lg">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="white" class="transform -rotate-12">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+
+        <div id="content-state" style="display: none;" class="opacity-0 scale-95 space-y-8 text-left w-full transition-all duration-1000">
+            <header class="text-center border-b border-violet-100 pb-4">
+                <h1 class="font-poetic italic text-5xl text-violet-950 tracking-wide">Diana,</h1>
+            </header>
+
+            <article class="space-y-6 text-[16px] md:text-lg leading-relaxed text-zinc-700 font-light tracking-wide">
+                <p class="transition-all duration-700 transform translate-y-4 opacity-0 content-paragraph">
+                    <span class="text-2xl font-poetic italic text-violet-900 font-medium">Eres</span> la forma más bonita que tuvo la vida de enseñarme que no miento cuando digo que eres el amor de mi vida.
+                </p>
+
+                <div class="bg-gradient-to-tr from-violet-50/50 to-fuchsia-50/50 p-6 rounded-2xl border border-violet-100/50 transition-all duration-700 transform translate-y-4 opacity-0 content-paragraph">
+                    <p class="font-poetic text-center italic text-violet-950 text-xl md:text-2xl leading-loose">
+                        "Eres la casualidad más bonita
+                        <br>en la cual me quedaría
+                        <br>toda la eternidad."
+                    </p>
+                </div>
+            </article>
+
+            <footer class="pt-4 border-t border-violet-100 text-center flex flex-col items-center justify-center">
+                <div class="text-violet-500 mb-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <p class="text-[11px] text-zinc-400 tracking-widest uppercase">Siempre tuyo 💜</p>
+            </footer>
+        </div>
+
+    </main>
+
+    <script>
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const colors = ['#a78bfa', '#f472b6', '#e879f9', '#c084fc'];
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.classList.add('heart-particle');
+                particle.innerHTML = `<svg width="${Math.random() * 16 + 8}" height="${Math.random() * 16 + 8}" viewBox="0 0 24 24" fill="${colors[Math.floor(Math.random() * colors.length)]}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> `;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = Math.random() * 3 + 4 + 's';
+                container.appendChild(particle);
+                setTimeout(() => { particle.remove(); }, 7000);
+            }, 400);
+        }
+        createParticles();
+
+        function abrirCarta() {
+            const envelopeState = document.getElementById('envelope-state');
+            const contentState = document.getElementById('content-state');
+            const card = document.getElementById('letter-card');
+
+            envelopeState.style.opacity = '0';
+            envelopeState.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                envelopeState.style.display = 'none';
+                card.classList.remove('max-w-md');
+                card.classList.add('max-w-xl', 'p-6', 'md:p-12');
+                
+                contentState.style.display = 'block';
+                
+                setTimeout(() => {
+                    contentState.classList.remove('opacity-0', 'scale-95');
+                    contentState.classList.add('opacity-100', 'scale-100');
+                    
+                    const paragraphs = document.querySelectorAll('.content-paragraph');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.remove('opacity-0', 'translate-y-4');
+                            p.classList.add('opacity-100', 'translate-y-0');
+                        }, (index + 1) * 400);
+                    });
+                }, 100);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
